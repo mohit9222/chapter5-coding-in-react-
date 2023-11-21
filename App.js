@@ -25,7 +25,7 @@ root.render(JSXHeading);
  *      </div>
  * </div>
  */
-
+//
 //createElement
 //create nested elements
 //use of root render
