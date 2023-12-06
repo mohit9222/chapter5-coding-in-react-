@@ -48,3 +48,8 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.footer {
+    border: 1px solid black;
+    text-align: center;
+}
