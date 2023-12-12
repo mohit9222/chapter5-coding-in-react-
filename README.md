@@ -11,3 +11,24 @@ In a nutshell, Hooks are simply functions managing local variables (state). They
 For a live demonstration of the coding assignment from Chapter 5 (InstaFood Version 1.0), visit Chapter-05 Live. Don't forget to explore subsequent chapters to witness InstaFood's evolution. Happy exploring with React!
 
 To discover more chapters in this series, feel free to browse through my repositories.
+
+/**
+ * Header
+ *  - Nav items
+ *  - Logo
+ * Body
+ *  - Search input
+ *  - search button
+ *  - Resto Cards
+ *      = img
+ *      = name of resturant
+ *      = cuisines
+ *      = star rating
+ *      = delivery time
+ * Footer
+ *  - Copyright
+ *  - links
+ *  - disclaimer
+ *  - address
+ *  - content
+ **/

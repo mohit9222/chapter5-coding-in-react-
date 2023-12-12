@@ -1,145 +1,87 @@
-Assignment 4 
+Assignment 5
  
 Owner - Mohit R 
 
-1. Is JSX mandatory for react?  
+1. What is the difference between named export and default export and * as export? 
 
-JSX is not a requirement for using React.  
-Each JSX element is just syntactic sugar for calling React.createElement(component, props, ...children).  
-So, anything you can do with JSX can also be done with just plain JavaScript.  
-Example code written with JSX: 
+Import & Export Modules are ES6 features that allow us to write reusable js code (modules), which when exported, allows other modules to use it by importing. 
 
-	class Hello extends React.Component { 
-	render() { 
+Named Export:  
 
-		return <div> Hello {this.props.toWhat}</div> 
+Placing the keyword export before the component/variable/object/module anything that you want to export.  
 
-	   } 
+There can be more than one named component in a file. While importing the Component name must be enclosed within {}. 
 
-	} 
+Example: In config.js file, there are two named exports IMG_CDN and restaurantList. 
 
-	const root = ReactDOM.createRoot(document.getElementById('root')); 
-	root.render(<Hello toWhat="World" />); 
+While importing IMG_CDN in ReastaurantCard.js file, import {IMG_CDN} from "../config"; In Body.js file, while importing import {restaurantList} from "../config"; is used. 
 
-Example code written without JSX: 
+Default Export:  
 
-	class Hello extends React.Component { 
- 	 render() { 
-    			return React.createElement('div', null, `Hello ${this.props.toWhat}`); 
-  	    } 
-	 } 
-	const root = ReactDOM.createRoot(document.getElementById('root')); 
-	root.render(React.createElement(Hello, {toWhat: 'World'}, null)); 
+Each component file can have only one export default. While importing just the Component name can be used (without any {}) 
 
-2. Is ES6 mandatory for react? 
+Example: Check Body.js file inside components in this chapter. Body component is exported using export default Body; 
 
-ES6 is not mandatory for using React but it's highly recommended to use ES6. Any javascript expressions (pure js) can be used in JSX to render React elements. 
-Currently, lot of React projects use ES6 features in React ecosystem, so it's better to have knowledge on ES6 features like modules, DE-structuring, spread operator, template literals, classes, map, filter and reduce array methods. 
+In the app.js file, while importing import Body from "./components/Body"; 
 
-3. { TitleComponent } vs {<TitleComponent />} vs {<TitleComponent> </TitleComponent>} in JSX 
+Import Maps:  
 
-{ TitleComponent } - This value in jsx is considered as jsx expression or variable. If no such variable is present, no output will be shown in the browser. Console throws the following warning 
-index.js:1 Warning: Functions are not valid as a React child. This may happen if you return a Component 	instead of <Component /> from render. Or maybe you meant to call this function rather than return it. 
+While importing, the component can be given an alias name and then in that file, that component is referred only using that alias name. 
 
-{<TitleComponent />} - This value in jsx is meant for rendering a component (i.e) function that return jsx. This is self-closing tag. 
+Example: Check Footer.js file inside components in this chapter. Footer Component is exported as named export using export const Footer = () => {} 
 
-{<TitleComponent> </TitleComponent>} - This is same as {<TitleComponent />} if there are no child inside TitleComponent. If there are children, then those values come inside {<TitleComponent>} and </TitleComponent>}. 
+In the app.js file, while importing use import {Footer as MainFooter} from "./components/Footer";. is the component name now, error is thrown if 
 
-4. How to write comments in JSX? 
+For using import map in default exported component, just use import NewComponentName from './components/Header'; 
 
-Comments are written like any other javascript code. In javascript, we use // to comment a single line and /* */ to comment multiple lines. 
+import * as  
 
-Similarly, in jsx we enclose js code inside {} and hence comments are also enclosed within { } . Only difference is for single line comment instead of {//} use {/* */ } 
+It is useful when we import all the components/modules functions as namespace object which contains all exports as properties.  
 
-const Header = () => { 
-   return (  
-    <h1>Namaste React</h1> { /* This is single line comment */} 
-      {/* 
-      * 
-      * This is multi line comments 
-      * 
-      */}  
+Those exported components can be accessed by Module.component name 
 
-      )} 
+If all the components in the module are exported, then using import * as namespace can be used to import all those components. 
 
-5. What is <React.Fragment></React.Fragment> and <></> ? 
+Example: Check Header.js file inside components in this chapter. There are three components exported. 
 
-Each jsx element (component) can have only one parent. This is because jsx element is converted to React.createElement(parent, props, ...children) before rendering in the DOM. 
+In app.js, while importing use import * as MainHeader from '. /components/Header'. <MainHeader.Header></MainHeader.Header> is used to render Header Component in AppLayout Component. 
 
-But the common pattern in React is for a component to return multiple elements. For grouping, we can enclose them within <div> </div>. But there can be situations where <div> </div> should not be used. In such cases, Fragments can be used to group a list of children without adding extra nodes to the DOM. 
+2. What is the importance of config.js file 
 
-For Example : If <Columns /> components return multiple <td></td> elements to be rendered inside the table. It would be invalid to wrap it inside <div></div> since HTML would be invalid. <React.Fragment></React.Fragment> can be used in such cases. 
+config.js file can be used to store the hardcoded values in one file, so that when the value needs to be modified, it can be easy to do the modification in one file. 
 
-The new, short syntax for declaring Fragment is empty tags <> </>. It can be used in the same way as any other element but it doesn't support keys or attributes. 
+Example: All API Base URLs, CDN links, config data from backend, default values needed in the app could be placed in config.js file. 
 
-What if React fires a key warning? There will be cases where we might use Fragments while mapping a list of elements . And React will fire a key warning since every element must have a unique key. In such cases, Keyed Fragments can be used. key is the only attribute that can be passed to <React.Fragment></React.Fragment>. This is not possible with <></>. 
-
-6. What is virtual DOM? 
-
-Virtual DOM (VDOM) is a programming concept where a copy/virtual representation of the UI is kept in memory and synced with the "real" DOM tree by a library called React-DOM. This process is called Reconciliation.  
-
-In React, a virtual DOM is associated with React elements since they are the objects representing the UI. React, however, also uses internal objects called “fibers” to hold additional information about the component tree. They may also be considered a part of “virtual DOM” implementation in React. 
  
-7. What is Reconciliation in react? 
 
-React uses diffing algorithm to diff one tree (actual DOM) from another which determines what needs to be updated and only re-renders the diff. 
+3. What are React Hooks? 
 
-In React, we pass props to a component. When any of the prop changes, a reconciliation process is triggered internally by react which traverses the whole component hierarchy to mark any changes required in the given component at a time. 
+React Hooks are a new addition to React from React 16.8 version.  
 
-Reconciler vs Renderer => Reconciler does the work of computing which parts of the tree have changed. Renderer uses this info to update the rendered app. 
+Earlier, state and other component features could be handled only using Class Components. But with version 16.8, React introduced a new pattern called Hooks.  
 
-8. What is React Fiber? 
+With React Hooks, we can use state, and other React features, in a functional component empowering functional programming in React. 
 
-React Fiber is the new reconciliation engine in React 16.  
-The goal of React Fiber is to increase its suitability for areas like animation, layout, and gestures.  
-Its headline feature is incremental rendering: the ability to split rendering work into chunks and spread it out over multiple frames. 
+Hooks are JavaScript functions that manage the state's behaviour and side effects by isolating them from a component. 
 
-9. Why do we need a key in React? When do we need keys in React? 
+React provides a bunch of standard in-built hooks like useState(), useEffect(), usecontext(), useReducer(), usecallback, useMemo(), useRef(), useLayoutEffect(), useDebugValue() and other additional hooks. 
 
-A key is a special string attribute you need to include when creating lists of elements. Keys help React identify which items have changed, are added, or are removed. 
-Keys must be used when siblings are of different elements types. 
+4. Why do we need useState() hook? 
 
-10. Can we use index as key in react? 
+useState() is one of the basic hooks functions which creates a state and assigns the initialState value passed in the parameter.  
 
-A key is the only thing React uses to identify DOM elements. It is not recommended to use indexes for keys if the order of items may change. This can negatively impact performance and may cause issues with component state. 
-But, nothing is better than anything. If we don't give a key, react by default assign id of that list item as it's key. 
-NO key << INDEX as key <<<<<< Unique id as key from data 
+UseState() creates a state variable and maintains the state of the component. 
 
-11. What are props in React? Ways to use props? 
+It also provides a setState function, the state can be updated only using this function. 
 
-Props (properties) passed in Component which are like arguments passed in a js function call and received by that function as parameters. 
-Every parent component can pass some information to its child components by giving them props. Props are like HTML attributes, but you can pass any JavaScript value through them, including objects, arrays, and functions. 
-Types of Props: array, bool, function, object 
-Passing Props to Component - props are the only argument to your component. React component functions accept a single argument, a props object. 
+const [state, setState] = useState(initialState); 
 
-Ways to pass and receive props to component 
-1. Add props to the JSX, just like you would with HTML attribute 
+During initial render, the returned state (state) is the same as the value passed as the first argument (initialState). 
 
-All props are sent into a single props object 
+The setState function is used to update the state. It accepts a new state value and enqueues a re-render of the component. 
 
-<Profile name = { "Mohit"} age={34} /> 
+setState(newState) 
 
-const Profile = (props) => { let name = props.name; let age = props.age; } 
+During subsequent re-renders, the first value returned by useState will always be the most recent state after applying updates. 
 
-2. Similar to the way mentioned in 1 
-
-Props object can be destructed using {} to receive only the required props 
-
-<Profile name = { "Mohit"} age={34} /> 
-
-const Profile = ({name, age}) => { } 
-
-3. Using spread syntax 
-
-And props objects destructed using {} 
-
-<Profile {...props} /> 
-
-const Profile = ({name, age}) => {} 
-
-However, props are immutable which means unchangeable. When a component needs to change its props (for example, in response to a user interaction or new data), it will have to “ask” its parent component to pass it different props—a new object! Its old props will then be cast aside, and eventually the JavaScript engine will reclaim the memory taken by them. 
-
-12. What is Config driven UI? 
-
-Config-driven UI is one of the UI design patterns in which the UI is rendered based on the configuration parameter sent by the server (backend).  
-This is one of the popular patterns used in the industry now. 
+If we want to use the prev state value instead of the first value, we can pass a function to setState, it receives previous state and returns updated state. 

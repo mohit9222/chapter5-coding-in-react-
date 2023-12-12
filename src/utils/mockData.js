@@ -1,62 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import logo from '../ReactLearning/assests/img/logo.png'
-import '../ReactLearning/App.css'
-/**
- * Header
- *  - Nav items
- *  - Logo
- * Body
- *  - Search input
- *  - search button
- *  - Resto Cards
- *      = img
- *      = name of resturant
- *      = cuisines
- *      = star rating
- *      = delivery time
- * Footer
- *  - Copyright
- *  - links
- *  - disclaimer
- *  - address
- *  - content
- **/
-
-const Header = () => {
-    return(
-        <div className='header'>
-            <div className='logo-container'>
-                <img className='logo' src={logo}></img>
-            </div>
-            <div className='nav-items'>
-                <ul>
-                    <li>Home</li>
-                    <li>About</li>
-                    <li>Contact Us</li>
-                    <li>Cart</li>
-                </ul>
-            </div>
-        </div>
-    )
-}
-
-const ResturantCard = (props) => {
-    const { resData } = props;
-    const { name, cuisines, avgRating, costForTwo, deliveryTime, cloudinaryImageId } = resData?.data;
-    return(
-        <div className='resto-card'>
-                <img className='rest-logo' alt="res-logo" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"
-              +cloudinaryImageId}/>
-            <h3>{name}</h3>
-            <h5>{cuisines.join(" , ")}</h5>
-            <h5>{avgRating} stars</h5>
-            <h5>{costForTwo}</h5>
-            <h5>{deliveryTime} mins</h5>
-        </div>
-    )
-}
-
 //Config Driven UI - Mock Data from API
 const resList = [
     {
@@ -677,6 +618,7 @@ const resList = [
         name: "Uncle Ji Restaurant",
         uuid: "e652ab57-22c2-4226-b5ea-a5caa26ee0f8",
         city: "22",
+        avgRating: "4.1",
         area: "Patel Nagar",
         totalRatingsString: "Too Few Ratings",
         cloudinaryImageId: "kx2ghnwagcnqjtmd5jbc",
@@ -788,43 +730,246 @@ const resList = [
       },
       subtype: "basic",
     },
+    {
+      type: "restaurant",
+      data: {
+        type: "F",
+        id: "496678",
+        name: "Sam Ji Restaurant",
+        uuid: "e652ab57-22c2-4226-b5ea-a5caa26ee0f8",
+        city: "22",
+        avgRating: "4.4",
+        area: "Patel Nagar",
+        totalRatingsString: "Too Few Ratings",
+        cloudinaryImageId: "kx2ghnwagcnqjtmd5jbc",
+        cuisines: ["North Indian", "Snacks", "Beverages"],
+        tags: [],
+        costForTwo: 30000,
+        costForTwoString: "₹300 FOR TWO",
+        deliveryTime: 31,
+        minDeliveryTime: 31,
+        maxDeliveryTime: 31,
+        slaString: "31 MINS",
+        lastMileTravel: 0.800000011920929,
+        slugs: {
+          restaurant: "uncle-ji-restaurant-patel-nagar-patel-nagar",
+          city: "dehradun",
+        },
+        cityState: "22",
+        address: "348 santosh tower, majra road gram majra dehradun 248001",
+        locality: "Patel Nagar",
+        parentId: 298209,
+        unserviceable: false,
+        veg: false,
+        select: false,
+        favorite: false,
+        tradeCampaignHeaders: [],
+        aggregatedDiscountInfo: {
+          header: "50% off",
+          shortDescriptionList: [
+            {
+              meta: "50% off | Use WELCOME50",
+              discountType: "Percentage",
+              operationType: "RESTAURANT",
+            },
+          ],
+          descriptionList: [
+            {
+              meta: "50% off up to ₹100 | Use code WELCOME50",
+              discountType: "Percentage",
+              operationType: "RESTAURANT",
+            },
+          ],
+          subHeader: "",
+          headerType: 0,
+          superFreedel: "",
+        },
+        aggregatedDiscountInfoV2: {
+          header: "50% OFF",
+          shortDescriptionList: [
+            {
+              meta: "Use WELCOME50",
+              discountType: "Percentage",
+              operationType: "RESTAURANT",
+            },
+          ],
+          descriptionList: [
+            {
+              meta: "50% off up to ₹100 | Use code WELCOME50",
+              discountType: "Percentage",
+              operationType: "RESTAURANT",
+            },
+          ],
+          subHeader: "",
+          headerType: 0,
+          superFreedel: "",
+        },
+        chain: [],
+        feeDetails: {
+          fees: [],
+          totalFees: 0,
+          message: "",
+          title: "",
+          amount: "",
+          icon: "",
+        },
+        availability: {
+          opened: true,
+          nextOpenMessage: "",
+          nextCloseMessage: "",
+        },
+        longDistanceEnabled: 0,
+        rainMode: "NONE",
+        thirdPartyAddress: false,
+        thirdPartyVendor: "",
+        adTrackingID: "",
+        badges: {
+          imageBased: [],
+          textBased: [],
+          textExtendedBadges: [],
+        },
+        lastMileTravelString: "0.8 kms",
+        hasSurge: false,
+        sla: {
+          restaurantId: "496677",
+          deliveryTime: 31,
+          minDeliveryTime: 31,
+          maxDeliveryTime: 31,
+          lastMileTravel: 0.800000011920929,
+          lastMileDistance: 0,
+          serviceability: "SERVICEABLE",
+          rainMode: "NONE",
+          longDistance: "NOT_LONG_DISTANCE",
+          preferentialService: false,
+          iconType: "EMPTY",
+        },
+        promoted: false,
+        avgRating: "--",
+        totalRatings: 0,
+        new: false,
+      },
+      subtype: "basic",
+    },
+    {
+      type: "restaurant",
+      data: {
+        type: "F",
+        id: "132461",
+        name: "Kushal Andhra Mess",
+        uuid: "c6460418-904b-4371-9e04-0ce8b1b46cae",
+        city: "22",
+        area: "Dehradun",
+        totalRatingsString: "1000+ ratings",
+        cloudinaryImageId: "zw4qx2szsy9kbszk9n3d",
+        cuisines: ["South Indian", "Biryani", "North Indian"],
+        tags: [],
+        costForTwo: 20000,
+        costForTwoString: "₹200 FOR TWO",
+        deliveryTime: 25,
+        minDeliveryTime: 25,
+        maxDeliveryTime: 25,
+        slaString: "25 MINS",
+        lastMileTravel: 1.399999976158142,
+        slugs: {
+          restaurant: "annapurna-andhra-mess-subhash-nagar-subhash-nagar",
+          city: "dehradun",
+        },
+        cityState: "22",
+        address:
+          "keshav enclave sewla khurd chandrabani road behind uttranchal PG college",
+        locality: "Patel Nagar",
+        parentId: 33997,
+        unserviceable: false,
+        veg: false,
+        select: false,
+        favorite: false,
+        tradeCampaignHeaders: [],
+        aggregatedDiscountInfo: {
+          header: "50% off",
+          shortDescriptionList: [
+            {
+              meta: "50% off | Use WELCOME50",
+              discountType: "Percentage",
+              operationType: "RESTAURANT",
+            },
+          ],
+          descriptionList: [
+            {
+              meta: "50% off up to ₹100 | Use code WELCOME50",
+              discountType: "Percentage",
+              operationType: "RESTAURANT",
+            },
+          ],
+          subHeader: "",
+          headerType: 0,
+          superFreedel: "",
+        },
+        aggregatedDiscountInfoV2: {
+          header: "50% OFF",
+          shortDescriptionList: [
+            {
+              meta: "Use WELCOME50",
+              discountType: "Percentage",
+              operationType: "RESTAURANT",
+            },
+          ],
+          descriptionList: [
+            {
+              meta: "50% off up to ₹100 | Use code WELCOME50",
+              discountType: "Percentage",
+              operationType: "RESTAURANT",
+            },
+          ],
+          subHeader: "",
+          headerType: 0,
+          superFreedel: "",
+        },
+        chain: [],
+        feeDetails: {
+          fees: [],
+          totalFees: 0,
+          message: "",
+          title: "",
+          amount: "",
+          icon: "",
+        },
+        availability: {
+          opened: true,
+          nextOpenMessage: "",
+          nextCloseMessage: "",
+        },
+        longDistanceEnabled: 0,
+        rainMode: "NONE",
+        thirdPartyAddress: false,
+        thirdPartyVendor: "",
+        adTrackingID: "",
+        badges: {
+          imageBased: [],
+          textBased: [],
+          textExtendedBadges: [],
+        },
+        lastMileTravelString: "1.3 kms",
+        hasSurge: false,
+        sla: {
+          restaurantId: "132460",
+          deliveryTime: 25,
+          minDeliveryTime: 25,
+          maxDeliveryTime: 25,
+          lastMileTravel: 1.399999976158142,
+          lastMileDistance: 0,
+          serviceability: "SERVICEABLE",
+          rainMode: "NONE",
+          longDistance: "NOT_LONG_DISTANCE",
+          preferentialService: false,
+          iconType: "EMPTY",
+        },
+        promoted: false,
+        avgRating: "4.1",
+        totalRatings: 1000,
+        new: false,
+      },
+      subtype: "basic",
+    },
   ];
 
-const Body = () => {
-    return(
-        <div className='body'>
-            <div className='search'>
-                Search
-            </div>
-            <div className='restro-container'>
-            {
-              resList.map((restaurant) => (
-                <ResturantCard key={restaurant.data.id} resData={restaurant}/>
-              ))
-            }
-            </div>
-        </div>
-    )
-}
-
-const Footer = () => {
-  return(
-    <div className='footer'>
-      <h4>Footer</h4>
-    </div>
-  )
-}
-
-const AppLayout = () => {
-    return(
-        <div>
-            <Header />
-            <Body />
-            <Footer />
-        </div>
-    )
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<AppLayout/>);
-
+  export default resList;
