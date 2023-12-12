@@ -70,7 +70,7 @@ React provides a bunch of standard in-built hooks like useState(), useEffect(), 
 
 useState() is one of the basic hooks functions which creates a state and assigns the initialState value passed in the parameter.  
 
-UseState() creates a state variable and maintains the state of the component. 
+useState() creates a state variable and maintains the state of the component. 
 
 It also provides a setState function, the state can be updated only using this function. 
 
